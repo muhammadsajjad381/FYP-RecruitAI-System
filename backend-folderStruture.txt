@@ -1,0 +1,17 @@
+c:/Users/Admin/Desktop/FYP-RecruitAI-System/backend/
+├── ai_services/
+│   └── .gitkeep
+├── config/
+│   └── db.js                 // Optimized MongoDB connection with pooling
+├── controllers/
+│   └── .gitkeep
+├── middleware/
+│   └── errorHandler.js       // Global error handling middleware
+├── models/
+│   └── CandidateModel.js     // Candidate Schema with secure password hashing logic
+├── routes/
+│   └── interviewRoutes.js    // Includes process-voice endpoint indicating async operations
+├── utils/
+│   └── logger.js             // Winston logger configuration
+├── server.js                 // Entry point with CORS, logging, error handling, rate limiting
+└── package.json              // Dependencies
