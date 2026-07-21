@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@100..900&display=swap');
+
+html, body {
+  margin: 0;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  font-family: 'Outfit', 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+body.dark {
+  background-color: #00050d;
+  color: #94a3b8;
+}
+
+body.light {
+  background-color: #f8fafc;
+  color: #0f172a;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(210,100%,98%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(220,100%,97%,1) 0, transparent 50%);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

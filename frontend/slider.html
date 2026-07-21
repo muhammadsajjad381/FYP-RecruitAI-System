@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3‑Slide Content Slider</title>
+  <!-- Swiper.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .swiper {
+      width: 90%;
+      max-width: 800px;
+    }
+    .slide {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+    h2 { font-size: 2rem; margin-bottom: 1rem; color: #fff; }
+    p { font-size: 1.1rem; line-height: 1.5; max-width: 600px; text-align: center; }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+    }
+    .swiper-pagination-bullet {
+      background: #888;
+      opacity: 1;
+    }
+    .swiper-pagination-bullet-active {
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide slide">
+        <h2>Slide 1 – Introduction</h2>
+        <p>Brief overview of the topic, its relevance, and what the audience can expect.</p>
+      </div>
+      <!-- Slide 2 -->
+      <div class="swiper-slide slide">
+        <h2>Slide 2 – Core Content</h2>
+        <p>Key points, diagrams, or data that form the heart of the presentation.</p>
+      </div>
+      <!-- Slide 3 -->
+      <div class="swiper-slide slide">
+        <h2>Slide 3 – Conclusion</h2>
+        <p>Summary of take‑aways, future directions, and a call‑to‑action.</p>
+      </div>
+    </div>
+    <!-- Navigation arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- Pagination dots -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+    });
+  </script>
+</body>
+</html>
