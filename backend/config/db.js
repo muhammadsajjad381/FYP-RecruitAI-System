@@ -10,9 +10,9 @@ const connectDB = async () => {
     console.log(`✅ MongoDB Atlas Connected Successfully: ${conn.connection.host}`);
     logger.info(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(`❌ Error connecting to MongoDB Atlas: ${error.message}`);
+    console.error(`Error connecting to MongoDB Atlas: ${error.message}`);
     logger.error(`Error connecting to MongoDB: ${error.message}`);
-    // process.exit(1); // Debugging ke liye exit nahi kar rahe
+    
   }
 };
 
