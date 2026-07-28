@@ -6,7 +6,7 @@ Final Year Project (FYP) featuring Neural Link voice calibration, resume intelli
 
 🔗 Live Demo: fyp-recruit-ai-system-nu.vercel.app
 
-📖 Overview
+ Overview
 
 RecruitAI System is an AI-powered recruitment platform built to make hiring fairer, faster, and more data-driven. It combines resume intelligence, voice-based candidate calibration, and behavioral analytics to help recruiters make objective, bias-free decisions — all presented through a sleek, futuristic terminal-inspired interface.
 
@@ -21,7 +21,7 @@ Frontend: React (Create React App), deployed on Vercel
 Backend: (update this section with your actual stack — e.g. Node.js/Express, Python/Flask, etc.)
 Other: AI/ML components for resume & voice analysis
 
-⚠️ Note: Update the Tech Stack section above with the exact libraries/frameworks you used in backend/ — I couldn't access the internal file contents directly, only the repo's top-level structure.
+ Note: Update the Tech Stack section above with the exact libraries/frameworks you used in backend/ — I couldn't access the internal file contents directly, only the repo's top-level structure.
 
 **Project Structure**
 FYP-RecruitAI-System/
@@ -50,14 +50,14 @@ bash
 Environment variables
 Create a .env file in the backend/ (and frontend/ if needed) directory
 Add required API keys / config values (e.g. AI service keys, database URL)
-📸 Screenshots / Demo
+ Screenshots / Demo
 
 Check out the live version here: fyp-recruit-ai-system-nu.vercel.app
 
-👤 Author
+Author
 
 Muhammad Sajjad GitHub: @muhammadsajjad381
 
-📄 License
+ License
 
 This project is developed as part of a Final Year Project (FYP). Add your preferred license here (e.g. MIT).
