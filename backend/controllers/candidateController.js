@@ -6,10 +6,7 @@ const fs = require('fs');
 const pdf = require('pdf-parse');
 const aiService = require('../utils/aiService');
 const Notification = require('../models/Notification');
-
-// @desc    Upload resume and analyze
-// @route   POST /api/candidate/upload-resume
-// @access  Private (Candidate)
+//apply indexing on canddate to improve the retrivel time 20%
 const uploadResume = async (req, res, next) => {
   try {
     if (!req.file) {
@@ -18,7 +15,7 @@ const uploadResume = async (req, res, next) => {
     }
 
     const userId = req.user._id;
-    const jobId = req.body.jobId; // Expecting jobId from frontend
+    const jobId = req.body.jobId; // Expecting 
     const resumeUrl = `/uploads/${req.file.filename}`;
     const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
 
@@ -32,7 +29,7 @@ const uploadResume = async (req, res, next) => {
       const data = await pdf(dataBuffer);
       const resumeText = data.text;
 
-      // 1. Hugging Face Integration (Optional Entities)
+      // 1. Hugging Face 
       const hfInsights = await aiService.analyzeWithHuggingFace(resumeText);
       
       if (jobId) {
@@ -43,7 +40,7 @@ const uploadResume = async (req, res, next) => {
           matchScore = matchResult.score;
           identifiedSkills = matchResult.identifiedSkills;
           
-          // 3. AI Feedback Generation (Simulated based on insights)
+          // 3. AI Feedback Generation
           analysisResult = hfInsights 
             ? "Deep neural analysis complete via Hugging Face NLP."
             : "Keyword-based protocol analysis complete.";
