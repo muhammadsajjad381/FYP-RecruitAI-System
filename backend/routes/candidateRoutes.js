@@ -4,7 +4,7 @@ const path = require('path');
 const { protect, admin } = require('../middleware/authMiddleware');
 const { uploadResume, getCandidateStats, getAdminStats } = require('../controllers/candidateController');
 
-const router = express.Router();
+const router = express.Router(); //by defualt router
 
 // Multer storage configuration
 const storage = multer.diskStorage({
@@ -21,9 +21,8 @@ const storage = multer.diskStorage({
 
 // File filter to only allow PDFs and Docs
 const fileFilter = (req, file, cb) => {
-  const filetypes = /pdf|doc|docx/;
+  const filetypes = /pdf|doc|docx/; //types of dicument should be
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  // Some browsers send different mimetypes for Word docs, so we focus on extname predominantly
   const mimetype = filetypes.test(file.mimetype);
 
   if (extname || mimetype) {

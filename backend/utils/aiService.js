@@ -1,17 +1,13 @@
 const axios = require('axios');
 
-/**
- * AI Service for Resume Analysis (Smarter Simulation & API Integration Ready)
- */
+
 class AIService {
   constructor() {
     this.hfToken = process.env.HUGGING_FACE_TOKEN || '';
     this.gptZeroKey = process.env.GPTZERO_API_KEY || '';
   }
 
-  /**
-   * Real-time Hugging Face NLP (Inference API)
-   */
+ 
   async analyzeWithHuggingFace(text) {
     if (!this.hfToken) return this.simulateDeepAnalysis(text);
 
@@ -29,17 +25,15 @@ class AIService {
     }
   }
 
-  /**
-   * Smarter Simulated NLP Analysis (No API Key Required)
-   */
+  
   async simulateDeepAnalysis(text) {
     const doc = text.toLowerCase();
     
-    // 1. Entity Extraction (Regex)
+    //  (Regex)
     const emailMatch = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
     const phoneMatch = text.match(/[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/);
     
-    // 2. Experience Detection
+    // Experience Detection
     const yearMatches = doc.match(/\d+\+?\s*(years|yrs|year)/g);
     let totalYears = 0;
     if (yearMatches) {
@@ -49,7 +43,7 @@ class AIService {
       });
     }
 
-    // 3. GPTZero Simulation (Based on unique words vs total words)
+    //  GPTZero 
     const words = doc.split(/\s+/).length;
     const uniqueWords = new Set(doc.split(/\s+/)).size;
     const perplexityRate = words > 0 ? (uniqueWords / words) : 0;
@@ -67,9 +61,6 @@ class AIService {
     };
   }
 
-  /**
-   * Smart Match Score Logic with Enhanced Skill Weights
-   */
   calculateSmartMatch(resumeText, jobRequirements) {
     const text = resumeText.toLowerCase();
     const identifiedSkills = [];

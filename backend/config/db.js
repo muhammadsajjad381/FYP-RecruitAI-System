@@ -7,7 +7,7 @@ const connectDB = async () => {
       maxPoolSize: 50,
       serverSelectionTimeoutMS: 5000,
     });
-    console.log(`✅ MongoDB Atlas Connected Successfully: ${conn.connection.host}`);
+    console.log(`MongoDB Atlas Connected Successfully: ${conn.connection.host}`);
     logger.info(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error connecting to MongoDB Atlas: ${error.message}`);

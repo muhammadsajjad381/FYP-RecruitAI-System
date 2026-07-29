@@ -10,10 +10,10 @@ const { protect, admin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-// Get all active questions (for interview use)
+// Get all qs
 router.get('/active', protect, getActiveQuestions);
 
-// Admin: get all questions (including inactive)
+// Admin get all qss 
 router.route('/')
   .get(protect, admin, getQuestions)
   .post(protect, admin, createQuestion);

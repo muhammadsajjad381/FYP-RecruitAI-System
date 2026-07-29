@@ -8,14 +8,13 @@ const { protect } = require('../middleware/authMiddleware');
 const Application = require('../models/Application');
 const Notification = require('../models/Notification');
 
-// Multer Config for Audio Uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = path.join(__dirname, '..', 'uploads', 'audio');
+     const uploadDir = path.join(__dirname, '..', 'uploads', 'audio');
     if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+       fs.mkdirSync(uploadDir, { recursive: true });
     }
-    cb(null, uploadDir);
+         cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
     cb(null, `${req.user.id}-${Date.now()}-interview${path.extname(file.originalname) || '.webm'}`);
@@ -23,64 +22,50 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// @desc    Process Voice Interview Audio and Score
-// @route   POST /api/v1/interviews/process-voice
-// @access  Private (Candidate)
 const processVoiceInterview = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    logger.info(`Processing AI audio interview for candidate: ${userId}`);
+          logger.info(`Processing AI audio interview for candidate: ${userId}`);
 
-    // If an audio file was recorded and sent
+    
     let audioUrl = '';
     if (req.file) {
       audioUrl = `/uploads/audio/${req.file.filename}`;
-    }
+       }
 
-    // Neural Analysis Logic Simulation
-    // Normally, this is where we send req.file to Python microservice
-    // We parse answeredCount, totalQuestions, baseCategory
     const { answeredCount, totalQuestions, category } = req.body;
     
-    // Fetch latest application to verify against original voiceSampleUrl
-    const latestApp = await Application.findOne({ user: userId }).sort({ createdAt: -1 });
+           const latestApp = await Application.findOne({ user: userId }).sort({ createdAt: -1 });
 
-    const isAudioEmpty = !req.file || req.file.size < 15000; // <15KB often means no speech
+     const isAudioEmpty = !req.file || req.file.size < 15000;
     const answered = parseInt(answeredCount) || 0;
 
-    let calculatedScore;
+      let calculatedScore;
     let feedback = "";
 
-    // Simulate Neural Voice Biometric Match
-    // If they have a voice sample, 20% chance we simulate a mismatch for physical testing
-    const hasVoiceSample = latestApp && latestApp.voiceSampleUrl;
+             const hasVoiceSample = latestApp && latestApp.voiceSampleUrl;
     const isVoiceMismatch = hasVoiceSample && !isAudioEmpty && answered > 0 && Math.random() < 0.2;
 
     if (isVoiceMismatch) {
       calculatedScore = 0;
       feedback = "SECURITY ALERT: Voice Print Mismatch! The speaker's voice does not match the originally registered voice sample. Real candidate must provide the interview.";
     } else if (isAudioEmpty || answered === 0) {
-      // Assign low score for empty audio or no questions answered
       calculatedScore = Math.floor(Math.random() * 15) + 10;
       feedback = "Audio stream empty or unclear. Candidate failed to provide sufficient responses. Session terminated early.";
     } else {
-      // Voice Verified. Score purely based on what was answered out of 100%
-      // So if answered 1 question perfectly -> gets a solid score.
-      let baseQuality = 65 + Math.floor(Math.random() * 30); // Simulated quality of the answer (65-95)
+      let baseQuality = 65 + Math.floor(Math.random() * 30); 
       
-      // Simulate AI Detection / Plagiarism
-      let aiDetectionFactor = Math.random(); 
-      let aiPenalty = 0;
+      // bis reduce
+         let aiDetectionFactor = Math.random(); 
+        let aiPenalty = 0;
       let aiBonus = 0;
       let aiFeedbackStr = "";
 
       if (aiDetectionFactor > 0.70) {
-        // High AI-probability detected (30% chance in simulation)
-        aiPenalty = Math.floor(aiDetectionFactor * 30); // Deduct up to ~30 marks
+         aiPenalty = Math.floor(aiDetectionFactor * 30); 
         aiFeedbackStr = ` [WARNING: High AI-plagiarism probability (${Math.round(aiDetectionFactor * 100)}%) detected. Marks deducted.]`;
       } else if (aiDetectionFactor < 0.30) {
-        // Very natural human phrasing
-        aiBonus = Math.floor((0.30 - aiDetectionFactor) * 30); // Add up to 9 bonus marks
+           aiBonus = Math.floor((0.30 - aiDetectionFactor) * 30); 
         aiFeedbackStr = " [Natural human acoustic patterns verified. Bonus points awarded.]";
       }
 
@@ -92,14 +77,13 @@ const processVoiceInterview = async (req, res, next) => {
         feedback = `Voice Verified. Evaluated strictly on ${answered} answered question(s): Candidate demonstrated solid fundamental knowledge.${aiFeedbackStr}`;
       } else {
         feedback = `Voice Verified. Evaluated strictly on ${answered} answered question(s): Candidate displayed basic understanding with room for improvement.${aiFeedbackStr}`;
-      }
-    }
+        }  
+ }
     
-    if (latestApp) {
+       if (latestApp) {
       latestApp.aiScore = calculatedScore;
       latestApp.aiFeedback = feedback;
-      if (audioUrl) {
-        // Just storing it somewhere, assuming we add a field or append to feedback
+     if (audioUrl) {
         latestApp.aiFeedback += ` [Audio Processed: ${audioUrl}]`;
       }
       await latestApp.save();
@@ -118,7 +102,6 @@ const processVoiceInterview = async (req, res, next) => {
       }
     });
 
-    // Create Notification for candidate ONLY
     if (req.user.role === 'Candidate') {
       await Notification.create({
         user: userId,
@@ -134,10 +117,6 @@ const processVoiceInterview = async (req, res, next) => {
     next(error);
   }
 };
-
-// @desc    Upload introductory voice sample
-// @route   POST /api/v1/interviews/upload-voice-sample
-// @access  Private (Candidate)
 const uploadVoiceSample = async (req, res, next) => {
   try {
     const userId = req.user.id;
