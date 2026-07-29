@@ -60,4 +60,4 @@ Muhammad Sajjad GitHub: @muhammadsajjad381
 
  License
 
-This project is developed as part of a Final Year Project (FYP). Add your preferred license here (e.g. MIT).
+This project is developed as part of a Final Year Project (FYP). 
