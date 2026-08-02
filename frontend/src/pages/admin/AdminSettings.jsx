@@ -83,7 +83,7 @@ export default function AdminSettings() {
   const inputStyle = "w-full bg-slate-50 dark:bg-[#0b111b] border border-slate-200 dark:border-gray-800 p-3 rounded-xl focus:border-green-500 outline-none transition-all text-[13px] text-slate-900 dark:text-gray-200 placeholder:text-slate-300 dark:placeholder:text-gray-700 font-medium shadow-sm dark:shadow-inner";
   const labelStyle = "text-[10px] font-black uppercase tracking-[2px] text-slate-400 dark:text-gray-500 mb-2.5 block ml-0.5";
 
-  // --- Render Function for Tabs ---
+  
   const renderTabContent = () => {
     switch (activeTab) {
       case "Platform Data":
@@ -182,7 +182,7 @@ export default function AdminSettings() {
   return (
     <div className="min-h-screen bg-[#f8fafc] dark:bg-[#00050d] text-slate-500 dark:text-gray-200 font-sans selection:bg-green-500/30">
       
-      {/* Toast Notification */}
+     
       <AnimatePresence>
         {showToast && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
@@ -195,7 +195,7 @@ export default function AdminSettings() {
 
       <main className="max-w-7xl mx-auto py-8 px-8">
         
-        {/* Header Section */}
+       
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 border-b border-gray-800/50 pb-12">
           <div>
             <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-400 dark:text-gray-500 hover:text-green-500 transition-colors mb-6 group">
